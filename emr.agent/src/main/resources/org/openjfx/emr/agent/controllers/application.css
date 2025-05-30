@@ -1,0 +1,49 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.signinVbox{
+	-fx-background-color: rgba(100, 0, 100, 0.6);
+	-fx-background-radius: 10;
+	
+}
+
+.signinLabels {
+	-fx-background-color: rgba(255, 255, 255, 1);
+	-fx-background-radius: 10;
+	-fx-padding: 10, 0, 10, 10;
+}
+
+.signinButton{
+	-fx-background-color: rgba(0, 0, 255, 1);
+	-fx-text-fill:rgba(255, 255, 255, 1);
+	-fx-background-radius: 10;
+}
+
+.signinButton:hover{
+	-fx-background-color: rgba(255, 255, 255, 1);
+	-fx-text-fill:rgba(0, 0, 255, 1); 
+	
+	
+}
+
+.signinCancel{
+	-fx-background-color: rgba(255, 0, 0, 1);
+	-fx-text-fill:rgba(255, 255, 255, 1);
+	-fx-background-radius: 10;
+}
+
+.signinCancel:hover{
+	-fx-background-color: rgba(255, 255, 255, 1);
+	-fx-text-fill:rgba(255, 0, 0, 1); 	
+}
+
+#menuBar{
+	-fx-text-fill: #f8f8ff;
+	-fx-background-color:  #6b8e23;
+	 -fx-font-weight: bold;
+	 -fx-font-size: 20px;
+	 
+}
+
+#sideBar{
+	-fx-background-color: #f0ffff;
+}
