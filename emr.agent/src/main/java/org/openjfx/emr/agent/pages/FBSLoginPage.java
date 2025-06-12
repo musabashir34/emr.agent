@@ -1,6 +1,8 @@
 package org.openjfx.emr.agent.pages;
 
 
+import java.util.Properties;
+
 import org.openjfx.emr.agent.utilities.UserLoginDetails;
 
 import com.microsoft.playwright.Page;
@@ -21,8 +23,19 @@ public class FBSLoginPage {
 	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(usernameField)).
 	      fill(userlogindetails.getUserName());
 	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(passwordField)).click();
-	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(passwordField)).
+	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(passwordField)).     
 	      fill(userlogindetails.getPassWord());
+	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(signInButton)).click();
+	      return new FBSHomePage(page);
+		
+	}
+	public FBSHomePage signIn(Properties prop) {
+		page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(usernameField)).click();
+	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(usernameField)).
+	      fill(prop.getProperty("username").trim());
+	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(passwordField)).click();
+	      page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName(passwordField)).
+	      fill(prop.getProperty("password").trim());
 	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(signInButton)).click();
 	      return new FBSHomePage(page);
 		

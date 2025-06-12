@@ -25,6 +25,8 @@ public class DiagnosisPredictor {
 			+ "Urinary Tract Infection,Viral Syndrome";
 	private Instances trainingData;
 	private Instances testingData;
+	Instances instanceTestingData;
+	ArrayList<Attribute> attributeArrayList = new ArrayList<>();
 	private Instances idData;
 	private FilteredClassifier fc;
 	private NominalToString ntsFilter;
@@ -43,6 +45,12 @@ public class DiagnosisPredictor {
 			ntsFilter.setInputFormat(trainingData1);
 			trainingData = Filter.useFilter(trainingData1, ntsFilter);
 			trainingData.setClassIndex(1);
+	        for (int i = 0; i < trainingData.numAttributes(); i++) {
+	            Attribute attribute = trainingData.attribute(i);
+	            attributeArrayList.add(attribute);
+	        }
+	        instanceTestingData = new Instances("testdata", attributeArrayList, 0);
+	        instanceTestingData.setClassIndex(instanceTestingData.numAttributes() - 1);
 			fc = (FilteredClassifier) weka.core.SerializationHelper.read(DiagnosisPredictor.
 					class.getResourceAsStream("filteredtextclassifier.model"));
 
@@ -103,21 +111,13 @@ public class DiagnosisPredictor {
 	}
 	public DiagnosisExample makeSinglePrediction(DiagnosisDialogController dialogContentController) {
 		DiagnosisExample example = null;
-        ArrayList<Attribute> attributeArrayList = new ArrayList<>();
-        for (int i = 0; i < trainingData.numAttributes(); i++) {
-            Attribute attribute = trainingData.attribute(i);
-            attributeArrayList.add(attribute);
-        }
-        Instances instanceTestingData = new Instances("testdata", attributeArrayList, 0);
         DenseInstance instance = new DenseInstance(2);
         String id = dialogContentController.getId();
         if (id.equals(""))
         	return null;
         String billItem = dialogContentController.getBillItem();
         instance.setValue(attributeArrayList.get(0), billItem );
-        
         instance.setDataset(instanceTestingData);
-        instanceTestingData.setClassIndex(instanceTestingData.numAttributes() - 1);
         try {
 			double classValue = fc.classifyInstance(instance);
 			String prediction = instanceTestingData.classAttribute().value((int)  classValue  );
@@ -126,6 +126,20 @@ public class DiagnosisPredictor {
 			return null;
 		}
 		return example;
+	}
+	public String makeSinglePrediction(String billItem) {
+		String prediction;
+		DenseInstance instance = new DenseInstance(2);
+		instance.setValue(attributeArrayList.get(0), billItem );
+		 instance.setDataset(instanceTestingData);
+		 try {
+				double classValue = fc.classifyInstance(instance);
+				prediction = instanceTestingData.classAttribute().value((int)  classValue  );
+			} catch (Exception e) {
+				return null;
+			}
+			return prediction;
+		
 	}
 
 

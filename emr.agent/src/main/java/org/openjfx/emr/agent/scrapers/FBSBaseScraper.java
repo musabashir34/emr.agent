@@ -41,6 +41,10 @@ public class FBSBaseScraper {
 		broadcaster.publish(Event.FBS_WEBPAGE_LOGIN);
 
 	}
+	public void signIn(Properties prop) {
+		homePage = loginPage.signIn(prop);
+
+	}
 	public void closeBrowser() {
 		page.context().browser().close();
 	}

@@ -17,6 +17,18 @@ import weka.filters.unsupervised.attribute.Remove;
 
 public class DebtDefaultPredictor {
 	private Instances trainingData;
+	public Instances getTrainingData() {
+		return trainingData;
+	}
+	public Instances getTestingData() {
+		return testingData;
+	}
+	public Instances getIdData() {
+		return idData;
+	}
+	public RandomForest getRdf() {
+		return rdf;
+	}
 	private Instances testingData;
 	private Instances idData;
 	private RandomForest rdf;

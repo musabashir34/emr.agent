@@ -6,11 +6,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import weka.classifiers.meta.FilteredClassifier;
-import weka.core.Instances;
-import weka.core.converters.CSVLoader;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.NominalToString;
 
 /**
  * JavaFX App
