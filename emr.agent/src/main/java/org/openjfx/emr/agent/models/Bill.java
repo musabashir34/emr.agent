@@ -43,10 +43,10 @@ public class Bill {
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	public boolean isInpatient() {
+	public String getIsInpatient() {
 		return isInpatient;
 	}
-	public void setIsInpatient(boolean isInpatient) {
+	public void setIsInpatient(String isInpatient) {
 		this.isInpatient = isInpatient;
 	}
 	public String getDiagnosis() {
@@ -62,6 +62,6 @@ public class Bill {
 	private int quantity = 0;
 	private double amount = 0;
 	private double totalAmount = 0;
-	private boolean isInpatient = false;
+	private String isInpatient = "NO";
 	private String diagnosis = "";
 }

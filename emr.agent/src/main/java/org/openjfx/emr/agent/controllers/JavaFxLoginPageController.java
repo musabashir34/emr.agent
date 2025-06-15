@@ -34,6 +34,7 @@ public class JavaFxLoginPageController {
 				protected Void call() throws Exception {
 					FBSBaseScraper baseScraper = new FBSBaseScraper();
 					baseScraper.signIn(userlogindetails);
+					baseScraper.closeBrowser();
 					return null;
 				}
 				

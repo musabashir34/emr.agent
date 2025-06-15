@@ -3,6 +3,7 @@ package org.openjfx.emr.agent.predictors;
 import java.util.ArrayList;
 
 import org.openjfx.emr.agent.controllers.DiagnosisDialogController;
+import org.openjfx.emr.agent.models.Bill;
 import org.openjfx.emr.agent.models.DefaultExample;
 import org.openjfx.emr.agent.models.DiagnosisExample;
 
@@ -31,6 +32,13 @@ public class DiagnosisPredictor {
 	private FilteredClassifier fc;
 	private NominalToString ntsFilter;
 	private ArrayList<DiagnosisExample> examplesList = new ArrayList<>();
+	private ArrayList<Bill> billsArray = new ArrayList<>();
+	public void setBillsArray(ArrayList<Bill> billsArray) {
+		this.billsArray = billsArray;
+	}
+	public ArrayList<Bill> getBillsArray() {
+		return billsArray;
+	}
 	public ArrayList<DiagnosisExample> getExamplesList() {
 		return examplesList;
 	}

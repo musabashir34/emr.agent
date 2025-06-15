@@ -2,6 +2,8 @@ package org.openjfx.emr.agent.controllers;
 
 import java.io.IOException;
 
+import org.openjfx.emr.agent.scrapers.FBSBaseScraper;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -29,6 +31,7 @@ public class App extends Application {
 
 
 	public static void main(String[] args) {
+		//FBSBaseScraper scraper = new FBSBaseScraper();
 		launch();
 
 	}

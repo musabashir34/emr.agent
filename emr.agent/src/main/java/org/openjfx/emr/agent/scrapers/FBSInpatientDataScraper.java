@@ -5,8 +5,12 @@ import org.openjfx.emr.agent.predictors.DebtDefaultPredictor;
 import org.openjfx.emr.agent.utilities.Event;
 
 public class FBSInpatientDataScraper extends FBSBaseScraper{
-	public DebtDefaultPredictor debtPredictor;
+	private DebtDefaultPredictor debtPredictor;
 	private FBSBillingPage fbsBillingPage;
+	public FBSBillingPage getFbsBillingPage() {
+		return fbsBillingPage;
+	}
+
 	public FBSInpatientDataScraper(DebtDefaultPredictor debtPredictor) {
 		super();
 		this.debtPredictor = debtPredictor;
