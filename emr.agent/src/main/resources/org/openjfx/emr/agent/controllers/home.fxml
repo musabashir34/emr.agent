@@ -41,6 +41,18 @@
                               <Font name="Microsoft Sans Serif" size="14.0" />
                            </font>
                         </Button>
+                        <Button fx:id="evaluate" contentDisplay="TOP" layoutX="120.0" layoutY="10.0" mnemonicParsing="false" onAction="#evaluateModels" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: WHITE;" text="MODELS EVALUATION" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView cache="true" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@modelevaluation.PNG" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Microsoft Sans Serif" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </TilePane>
                </content>

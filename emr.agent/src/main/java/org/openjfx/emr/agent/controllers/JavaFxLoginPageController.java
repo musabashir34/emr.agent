@@ -7,6 +7,7 @@ import org.openjfx.emr.agent.scrapers.RelianceHmoBillSubmitter;
 import org.openjfx.emr.agent.utilities.Broadcaster;
 import org.openjfx.emr.agent.utilities.Event;
 import org.openjfx.emr.agent.utilities.UserLoginDetails;
+import org.openjfx.emr.agent.utilities.ViewsFxmls;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -69,6 +70,7 @@ public class JavaFxLoginPageController {
 			e.printStackTrace();
 		}
 		ViewSwitcher.setBaseRootCenter(baseRoot);
+		signinProgress.visibleProperty().bind(loginService.runningProperty());
 		broadcaster = Broadcaster.getInstance();
 		broadcaster.subscribe(Event.FBS_WEBPAGE_LOGIN, this, this::loadHomePage);
 	}

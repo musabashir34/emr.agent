@@ -34,7 +34,7 @@ public class MultipleDiagnosisController extends BaseDiagnosisController{
 		if (!observableList.isEmpty())
 			observableList.clear();
 		 FileChooser fileChooser = new FileChooser();
-		 fileChooser.setTitle("Save Predictions");
+		 fileChooser.setTitle("Make Predictions");
 		 fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
 		 File selectedFile = fileChooser.showOpenDialog(App.stage);
 		 if (selectedFile != null) {

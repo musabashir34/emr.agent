@@ -1,5 +1,7 @@
 package org.openjfx.emr.agent.controllers;
 
+import org.openjfx.emr.agent.utilities.ViewsFxmls;
+
 import javafx.fxml.FXML;
 
 public class ModelChooser {

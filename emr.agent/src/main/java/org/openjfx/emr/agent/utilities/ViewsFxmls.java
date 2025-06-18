@@ -1,4 +1,4 @@
-package org.openjfx.emr.agent.controllers;
+package org.openjfx.emr.agent.utilities;
 
 public enum ViewsFxmls {
 	LOGIN("login"),
@@ -9,7 +9,8 @@ public enum ViewsFxmls {
 	SINGLE_DEFAULT("defaultsingle"),
 	MULTIPLE_DEFAULT("defaultmultiple"),
 	SINGLE_DIAGNOSIS("diagnosissingle"),
-	MULTIPLE_DIAGNOSIS("diagnosismultiple");
+	MULTIPLE_DIAGNOSIS("diagnosismultiple"),
+	EVALUATIONS("modelsevaluation");
 
     private String fileName;
 

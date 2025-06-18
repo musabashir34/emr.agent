@@ -1,5 +1,7 @@
 package org.openjfx.emr.agent.controllers;
 
+import org.openjfx.emr.agent.utilities.ViewsFxmls;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 
@@ -14,6 +16,9 @@ public class JavaFxHomePageController {
 	@FXML public void bill() {
 		ViewSwitcher.switchBaseRootCenter(ViewsFxmls.BILLING);
 	}
+	@FXML public void evaluateModels() {
+		ViewSwitcher.switchBaseRootCenter(ViewsFxmls.EVALUATIONS);
+	}
 
 	@FXML public void toHome() {
 		ViewSwitcher.switchBaseRootCenter(ViewsFxmls.HOME);
@@ -24,5 +29,7 @@ public class JavaFxHomePageController {
 		scene.setRoot(ViewSwitcher.getStartingPageRoot());
 		
 	}
+
+	
 
 }

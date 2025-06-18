@@ -121,7 +121,7 @@ public class BillingController extends BaseDefaultController {
 	
 	private void updateInpatientsPredictionsTable(String topic) {
 		observableList.addAll(predictor.getExamplesList());
-		String information = (observableList.isEmpty())? "There are no Paying Patients on Admission":"Inpatient Report Successfully Generated";
+		String information = (observableList.isEmpty())? "There are no Paying Patients on Admission Currently":"Inpatient Report Successfully Generated";
 		Alert alert = new Alert(Alert.AlertType.INFORMATION, information) {
 			
 		};
@@ -164,7 +164,8 @@ public class BillingController extends BaseDefaultController {
 	
 	private void updateBillsPredictionsTable(String topic) {
 		observableBillsList.addAll(diagnosisPredictor.getBillsArray());
-		String information = (observableBillsList.isEmpty())? "There are no Bills for the Selected HMO in the Period":"Bills Successfully Generated";
+		String information = (observableBillsList.isEmpty())? "There are no Bills for "+(String) hmo_retainerChoice.getSelectionModel().getSelectedItem()+ 
+				"in the Selected Period":"Bills Successfully Generated";
 		Alert alert = new Alert(Alert.AlertType.INFORMATION, information) {
 			
 		};
