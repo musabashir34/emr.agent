@@ -2,6 +2,7 @@ package org.openjfx.emr.agent.controllers;
 	
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.openjfx.emr.agent.models.Bill;
@@ -28,11 +29,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 
 public class BillingController extends BaseDefaultController {
+	public BillingController() {
+		super();
+	}
+
 	private static DiagnosisPredictor diagnosisPredictor= new DiagnosisPredictor();
 	ObservableList<Bill> observableBillsList = FXCollections.observableArrayList();
 	private Broadcaster broadcaster;
 	private DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("M/dd/YYYY");
-
+	private ArrayList<DefaultExample> inpatients = new ArrayList<>() ;
 	@FXML TableView<DefaultExample> predictionsTable;
 	@FXML TableColumn<DefaultExample, String> idColumn;
 	@FXML TableColumn<DefaultExample, String> classColumn;
@@ -92,8 +97,9 @@ public class BillingController extends BaseDefaultController {
 	}
 
 	@FXML public void predictInpatientsDebtRisk() {
-		if (!observableList.isEmpty())
-			observableList.clear();
+		cancelbBill();
+		clearPredictions();
+		inpatients.clear();
 		inpatientReportService.restart();
 	}
 
@@ -106,10 +112,8 @@ public class BillingController extends BaseDefaultController {
 
 				@Override
 				protected Void call() throws Exception {
-					FBSInpatientDataScraper inpatientDataScraper = new FBSInpatientDataScraper(predictor);
-					inpatientDataScraper.getFbsBillingPage().setInpatientProgressUpdate((workDone, totalWork) -> 
-                    updateProgress(workDone, totalWork));
-					inpatientDataScraper.predictInpatientsDebtRisk();
+					FBSInpatientDataScraper inpatientDataScraper = new FBSInpatientDataScraper();
+					inpatientDataScraper.predictInpatientsDebtRisk(inpatients);
 					inpatientDataScraper.closeBrowser();
 					return null;
 				}
@@ -120,6 +124,7 @@ public class BillingController extends BaseDefaultController {
 	};
 	
 	private void updateInpatientsPredictionsTable(String topic) {
+		predictor.predictExamples(inpatients);
 		observableList.addAll(predictor.getExamplesList());
 		String information = (observableList.isEmpty())? "There are no Paying Patients on Admission Currently":"Inpatient Report Successfully Generated";
 		Alert alert = new Alert(Alert.AlertType.INFORMATION, information) {
@@ -138,13 +143,12 @@ public class BillingController extends BaseDefaultController {
 
 				@Override
 				protected Void call() throws Exception {
-					LocalDate from = fromDate.getValue();
-					LocalDate to = toDate.getValue();
+					String from = dateformatter.format(fromDate.getValue());
+					String to = dateformatter.format(toDate.getValue());
 					FBSBillsScraper billingScraper = new FBSBillsScraper(diagnosisPredictor);
-					billingScraper.getFbsBillingPage().setBillProgressUpdate((workDone, totalWork) -> 
-                    updateProgress(workDone, totalWork));
-					billingScraper.generateBills((String) hmo_retainerChoice.getSelectionModel().getSelectedItem(), dateformatter.format(from), dateformatter.
-							format(to));
+					System.out.println(from);
+					System.out.println(to);
+					billingScraper.generateBills((String) hmo_retainerChoice.getSelectionModel().getSelectedItem(), from, to);
 					billingScraper.closeBrowser();
 					return null;
 				}
@@ -155,8 +159,8 @@ public class BillingController extends BaseDefaultController {
 	};
 	
 	@FXML public void generateBill() {
-		if (!observableBillsList.isEmpty())
-			observableBillsList.clear();
+		clearBill();
+		cancelReport();
 		billingService.restart();
 		
 		
@@ -179,6 +183,14 @@ public class BillingController extends BaseDefaultController {
 	@FXML public void clearBill() {
 		if (!observableBillsList.isEmpty())
 			observableBillsList.clear();
+	}
+
+	@FXML public void cancelReport() {
+		inpatientReportService.cancel();
+	}
+
+	@FXML public void cancelbBill() {
+		billingService.cancel();
 	}
 
 }

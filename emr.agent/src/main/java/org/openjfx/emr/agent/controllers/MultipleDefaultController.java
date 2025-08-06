@@ -38,8 +38,7 @@ public class MultipleDefaultController extends BaseDefaultController{
 	}
 
 	@FXML public void makePredictions() {
-		if (!observableList.isEmpty())
-			observableList.clear();
+		clearPredictions();
 		 FileChooser fileChooser = new FileChooser();
 		 fileChooser.setTitle("Make Predictions");
 		 fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));

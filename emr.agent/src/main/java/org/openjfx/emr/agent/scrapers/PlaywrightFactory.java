@@ -32,7 +32,7 @@ public class PlaywrightFactory {
 	}
 	public Page initializeBrowser() {
 		tlPlaywright.set(Playwright.create());
-		tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+		tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(true)));
 		tlBrowserContext.set(getBrowser().newContext());
 		tlPage.set(getBrowserContext().newPage());
 		getPage().navigate(prop.getProperty("url").trim());

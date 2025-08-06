@@ -204,4 +204,37 @@ Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to Make Predictions. CSV 
 		}
 		return testSeries2;
 	}
+	public void predictExamples(ArrayList<DefaultExample> inpatients) {
+		examplesList.clear();
+		ArrayList<Attribute> attributeArrayList = new ArrayList<>();
+        for (int i = 0; i < trainingData.numAttributes(); i++) {
+            Attribute attribute = trainingData.attribute(i);
+            attributeArrayList.add(attribute);
+        }
+        Instances instanceTestingData = new Instances("testdata", attributeArrayList, 0);
+        instanceTestingData.setClassIndex(instanceTestingData.numAttributes() - 1);
+        for (DefaultExample inpatient:inpatients) {
+        	DenseInstance instance = new DenseInstance(6);
+        	 String financialClass = inpatient.getFinancialClass();
+             instance.setValue(attributeArrayList.get(0), financialClass );
+             String room = inpatient.getRoom();
+             instance.setValue(attributeArrayList.get(1), room );
+             double totalDeposit = inpatient.getTotalDepositedAmount();
+             instance.setValue(attributeArrayList.get(2), totalDeposit );
+             double totalBill = inpatient.getTotalBill();
+             instance.setValue(attributeArrayList.get(3), totalBill );
+             int daysOnAdmission = inpatient.getDaysOnAdmission();
+             instance.setValue(attributeArrayList.get(4), daysOnAdmission );
+             instance.setDataset(instanceTestingData);
+             try {
+     			double classValue = rdf.classifyInstance(instance);
+     			String prediction = instanceTestingData.classAttribute().value((int)  classValue  );
+     			inpatient.setWillDefault(prediction);
+     			examplesList.add(inpatient);
+     		} catch (Exception e) {
+     		}
+        }
+       
+		
+	}
 }

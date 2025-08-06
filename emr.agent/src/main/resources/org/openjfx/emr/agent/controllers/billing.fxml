@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -20,7 +21,7 @@
 
 <TabPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.emr.agent.controllers.BillingController">
    <tabs>
-      <Tab text="PAYING INPATIENT REPORT">
+      <Tab closable="false" text="PAYING INPATIENT REPORT">
          <content>
             <BorderPane style="-fx-background-color: white;">
                <top>
@@ -31,9 +32,9 @@
                               <Font name="Arial Nova Bold" size="15.0" />
                            </font>
                         </Label>
-                        <HBox fx:id="payingInpatientsIndicatorBox" alignment="CENTER" maxWidth="300.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
+                        <HBox fx:id="payingInpatientsIndicatorBox" alignment="CENTER" maxWidth="542.0" prefHeight="50.0" prefWidth="542.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
                            <children>
-                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="255.0" style="-fx-background-color: white;" text="Computing your Preditions" HBox.hgrow="ALWAYS">
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="313.0" style="-fx-background-color: white; -fx-text-fill: red;" text="GENERATING INPATIENTS REPORT" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Algerian" size="14.0" />
                                  </font>
@@ -41,7 +42,15 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <ProgressIndicator fx:id="payingInpatientsIndicator" nodeOrientation="RIGHT_TO_LEFT" prefHeight="51.0" prefWidth="35.0" progress="0.0" HBox.hgrow="ALWAYS" />
+                              <ProgressBar fx:id="payingInpatientsIndicator" prefHeight="18.0" prefWidth="170.0" progress="0.0" />
+                              <Button mnemonicParsing="false" onAction="#cancelReport" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets top="10.0" />
@@ -99,7 +108,7 @@
             </BorderPane>
          </content>
       </Tab>
-      <Tab text="RETAINERSHIP/INSURANCE BILLING">
+      <Tab closable="false" text="RETAINERSHIP/INSURANCE BILLING">
          <content>
             <BorderPane style="-fx-background-color: white;">
                <top>
@@ -110,9 +119,9 @@
                               <Font name="Arial Nova Bold" size="15.0" />
                            </font>
                         </Label>
-                        <HBox fx:id="billingIndicatorBox" alignment="CENTER" maxWidth="300.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
+                        <HBox fx:id="billingIndicatorBox" alignment="CENTER" maxWidth="457.0" prefHeight="50.0" prefWidth="457.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
                            <children>
-                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="279.0" style="-fx-background-color: white;" text="Computing your Preditions" HBox.hgrow="ALWAYS">
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="279.0" style="-fx-background-color: white; -fx-text-fill: RED;" text="GENERATING BILLS" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Algerian" size="14.0" />
                                  </font>
@@ -121,6 +130,14 @@
                                  </HBox.margin>
                               </Label>
                               <ProgressIndicator fx:id="billingIndicator" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="50.0" progress="0.0" HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#cancelbBill" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets top="10.0" />

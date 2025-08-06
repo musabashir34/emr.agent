@@ -11,6 +11,7 @@ public class FBSBillsScraper extends FBSBaseScraper{
 	private FBSBillingPage fbsBillingPage;
 	public FBSBillsScraper(DiagnosisPredictor diagnosisPredictor) {
 		super();
+		homePage = loginPage.signIn(prop);
 		fbsBillingPage = homePage.goToBillingPage();
 		this.diagnosisPredictor = diagnosisPredictor;
 	}
